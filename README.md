@@ -15,14 +15,12 @@ Simply drag the SCDatePicker.swift file to your project.
         datePickerTextField.dateDelegate = self
         datePickerTextField.datetype = .date
 
-##Options
-
-There are the basic three UIDatePicker options to choose from:
+There are the basic three UIDatePicker options to choose from
 1. Date
 2. DateAndTime
 3. CountDownTimer
 
-Use .datetype to select choice using:
+Use .datetype to select choice using
 1. date
 2. time
 3. countdown
