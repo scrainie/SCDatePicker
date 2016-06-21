@@ -34,10 +34,34 @@ func dateTextHasChanged(dateString:String, date:NSDate)
 
 Sample Usage:
 ```Swift
-func dateTextHasChanged(dateString: String, date: NSDate) {
+
+class ViewController: UIViewController, SCDateFieldDelegate {
+
+    @IBOutlet weak var datePickerTextField: DateFieldTextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        datePickerTextField.dateDelegate = self
+        datePickerTextField.datetype = .date
+    }
+
+    
+    func dateTextHasChanged(dateString: String, date: NSDate) {
     
         datePickerTextField.text = dateString
         
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+
+}
+
+
 ```
 
