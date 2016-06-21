@@ -23,9 +23,17 @@ There are the basic three UIDatePicker options to choose from:
 3. CountDownTimer
 
 Use .datetype to select choice using:
-1. .date
-2. .time
-3. .countdown
+1. date
+2. time
+3. countdown
+
+E.g.,
+```Swift
+datePickerTextField.datetype = .date
+datePickerTextField.datetype = .time
+datePickerTextField.datetype = .countdown
+
+```
 
 ##Delegate
 When SCDatePicker has finished selecting date, you can receive the date as a string or Date()
