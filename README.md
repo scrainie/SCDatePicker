@@ -28,6 +28,7 @@ Use .datetype to select choice using:
 3. .countdown
 
 ##Delegate
+When SCDatePicker has finished selecting date, you can receive the date as a string or Date()
 ```Swift
 func dateTextHasChanged(dateString:String, date:NSDate)
 ```
