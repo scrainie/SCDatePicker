@@ -18,6 +18,9 @@ class ViewController: UIViewController, SCDateFieldDelegate {
         
         datePickerTextField.dateDelegate = self
         datePickerTextField.datetype = .date
+        
+        //Options
+        datePickerTextField.doneButtonTint = UIColor.redColor()
     }
 
     

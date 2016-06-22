@@ -39,7 +39,7 @@ public class SCDatePicker: UIDatePicker {
     //Delegate
     public var scDelegate: SCDatePickerDelegate?
     
-    //DatePickerModeType
+    //Public Options
     public var scType: SCDatePickerType!
     
     
@@ -57,22 +57,17 @@ public class SCDatePicker: UIDatePicker {
         super.layoutSubviews()
         
         self.datePickerMode = scType.dateType()
-        
-    }
 
+    }
+    
+    //Configure DatePicker
     private func configureDatePicker() {
         
         self.addTarget(self, action: #selector(SCDatePicker.handleDatePicker(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }
     
-    
-    required public init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        
-    }
-    
-    
+    //MARK: Delegate - handle datepicker selection
     @objc private func handleDatePicker(sender: UIDatePicker) {
         
         if scDelegate != nil {
@@ -80,7 +75,6 @@ public class SCDatePicker: UIDatePicker {
         }
         
     }
-    
     
     //Date -> String (input string required)
     private func dateToString(convertTo:String, date:NSDate) -> String{
@@ -92,17 +86,23 @@ public class SCDatePicker: UIDatePicker {
         return dateFormatter.stringFromDate(currentDate)
     }
 
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
     
 }
 
-
+//DatePickerTexfield Class
 public class DateFieldTextField: UITextField, SCDatePickerDelegate{
     
-    
+    //Init DatePicker
     let scDatePicker = SCDatePicker()
     
+    //Public Options
     public var datetype: SCDatePicker.SCDatePickerType?
 
+    //Toolbar
+    public var doneButtonTint:UIColor?
     
     //Delegate
     public var dateDelegate: SCDateFieldDelegate?
@@ -124,7 +124,7 @@ public class DateFieldTextField: UITextField, SCDatePickerDelegate{
         
     }
     
-    
+    //Date Selected
     public func didSelectDate(dateString: String, date: NSDate) {
         
         if dateDelegate != nil {
@@ -133,15 +133,19 @@ public class DateFieldTextField: UITextField, SCDatePickerDelegate{
         }
     }
     
-    func configureToolBar() -> UIToolbar {
+    //Configure Toolbar
+    private func configureToolBar() -> UIToolbar {
         
         //ToolBar
         let toolbar = UIToolbar()
         toolbar.barStyle = UIBarStyle.Default
         toolbar.translucent = true
-        
+    
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: #selector(DateFieldTextField.handleDatePickerDoneButton(_:)))
+        
+        //Custom Options
+        doneButton.tintColor = doneButtonTint
         
         toolbar.setItems([space, doneButton], animated: false)
         toolbar.userInteractionEnabled = true
@@ -151,17 +155,15 @@ public class DateFieldTextField: UITextField, SCDatePickerDelegate{
         
     }
 
+    //MARK: Delegate - did select date
     @objc private func handleDatePickerDoneButton(sender:UIBarButtonItem) {
-       
         if dateDelegate != nil {
             self.endEditing(true)
         }
-        
     }
 
     
     required public init?(coder aDecoder: NSCoder) {
-     
         super.init(coder: aDecoder)
     }
 }
