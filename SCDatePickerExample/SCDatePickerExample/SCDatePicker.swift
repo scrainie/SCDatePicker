@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 
+//Adding Comment to Github
+
 @objc public protocol SCDatePickerDelegate: NSObjectProtocol {
     
     optional func didSelectDate(dateString:String, date:NSDate)
